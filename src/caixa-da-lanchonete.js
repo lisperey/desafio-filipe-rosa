@@ -9,7 +9,7 @@ class CaixaDaLanchonete {
     {tipo:"debito", desconto:0, acrescimo:0}, {tipo:"credito", desconto:0, acrescimo:3}];
 
     calcularValorDaCompra(metodoDePagamento, itens) {
-        if(itens.length <= 0)return "Não há itens no carrinho de compra!";
+        if(itens.length <= 0) return "Não há itens no carrinho de compra!";
         // condição para se não tiver item
 
         let array_itens = itens.map(i => i.split(","));
@@ -35,13 +35,13 @@ class CaixaDaLanchonete {
                 // verifica se a quantidade é valida
                 return;
             }
-            else if(item.flag_extra === 1 && !array_itens.map(r => r[0]===item.principal).includes(true)){
+            else if(item.flag_extra === 1 && !array_itens.map(r => r[0].trim().toLowerCase()===item.principal).includes(true)){
                 total_pedido = 'Item extra não pode ser pedido sem o principal';
                 // verifica se o intem extra está correto
                 return;
             }
             else if(!isNaN(total_pedido)){
-                total_pedido += item.preco * res[1];
+                total_pedido += item.preco * parseInt(res[1]);
             }
             return;
         });
